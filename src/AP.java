@@ -20,9 +20,12 @@ public class AP {
 		return new Object[]{name,mac,way,secret_type,scale,attack};
 	}
 	public static AP[] getDatas() {
-		AP p = new AP("cmcc","FF:FC:D3:46:40", "6", "WPA2", "||||", "ЕігуAP");
-		AP p2 = new AP("cmcc2","FF:FC:D3:46:40", "7", "WPA1", "|||", "ЕігуAP");
-		return new AP[]{p,p2};
+		AP p = new AP("cmcc","FF:FC:D3:46:40", "6", "WPA2", "3", "ЕігуAP");
+		AP p2 = new AP("cmcc-edu","FF:FC:o3:46:00", "7", "WPA1/WPA2", "1", "ЕігуAP");
+		AP p3 = new AP("unicome","FF:FD:H3:46:44", "7", "WPA1", "0", "е§ГЃ");
+		AP p4 = new AP("mianliao","FF:FC:e3:23:24", "7", "WPA2", "6", "ЕігуAP");
+		AP p5 = new AP("cmcc2","FF:fC:D3:06:40", "7", "WPA1", "9", "е§ГЃ");
+		return new AP[]{p,p2,p3,p4,p5};
 	}
 	
 }

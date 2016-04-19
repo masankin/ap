@@ -5,8 +5,10 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -38,13 +40,13 @@ public class Main {
 		 JMenuBar menubar = new JMenuBar();
 		 JMenu menu = new JMenu("菜单");
 		 // 菜单按钮
-		 JMenuItem item[] = new JMenuItem[]{new JMenuItem("菜单1"),new JMenuItem("菜单2")};
+		 JMenuItem item[] = new JMenuItem[]{new JMenuItem("关于")};
 		 for(JMenuItem it : item) {
 			 menu.add(it);
 		 }
 		 menubar.add(menu);
 		 // 工具按钮
-		 JMenu tools[] = new JMenu[]{new JMenu("工具1"),new JMenu("工具2"),new JMenu("工具3")};
+		 JMenu tools[] = new JMenu[]{new JMenu("信道占用"),new JMenu("拓扑显示"),new JMenu("退出扫描")};
 		 for(JMenu m : tools) {
 			 menubar.add(m);
 		 }
@@ -54,6 +56,7 @@ public class Main {
 	public void initLeft() {
 		Container content = frame.getContentPane();
 		final JTable table = new JTable(model);
+		table.setRowHeight(50);
 		content.add(new JScrollPane(table), BorderLayout.CENTER);
 		// table data
 		for(AP p:AP.getDatas()) {
@@ -62,9 +65,13 @@ public class Main {
 		// resize to middle
 		DefaultTableCellRenderer render = new DefaultTableCellRenderer();
 	       render.setHorizontalAlignment(SwingConstants.CENTER);
+	    ImageCell imgcell = new ImageCell();
 	    table.getTableHeader().setDefaultRenderer(render);
 	    for(int i=0;i<table.getColumnModel().getColumnCount();i++) {
-	    	table.getColumnModel().getColumn(i).setCellRenderer(render);
+	    	if(i == 4)
+	    		table.getColumnModel().getColumn(i).setCellRenderer(imgcell);
+	    	else
+	    		table.getColumnModel().getColumn(i).setCellRenderer(render);
 	    }
 	    // click table
 	    table.addMouseListener(new MouseAdapter() {
@@ -89,6 +96,7 @@ public class Main {
 		TimeSeriesChart time = new TimeSeriesChart();
 		jp.add(pie.getChartPanel());
 		jp.add(time.getChartPanel());
+		//jp.add(new JLabel(new ImageIcon("image/5.png")));
 		content.add(jp, BorderLayout.EAST);
 	}
 	public static void main(String args[]) {
